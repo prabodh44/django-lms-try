@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from lms.models import Student, Book
-from lms.forms import CreateStudent, django_CreateStudent, CreateEmployee
+from lms.forms import CreateStudent, CreateBook
 
 
 
@@ -19,13 +19,6 @@ def detail_view(request):
     })
 
 def addStudent_view(request):
-    # form = CreateEmployee()
-    # context = {
-    #     'form': form
-    # }
-    # if (request.method == "POST"):
-    #     if form.is_valid():
-    #         form.save()
     
     form = CreateStudent()
     print('POST Request', request.POST)
@@ -39,6 +32,15 @@ def addStudent_view(request):
 
         
     return render(request, 'lms/addstudent.html', {'form':form})
+
+def addNewBook_view(request):
+    form = CreateBook()
+    if request.method == "POST":
+        print("FORM IS VALID ", form.is_valid())
+        form = CreateBook(request.POST)
+    
+    return render(request, 'lms/addnewbook.html', {'form':form})
+    
 
 def description_view(request, student_id):
     student = Student.objects.get(pk=student_id)
