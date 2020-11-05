@@ -1,14 +1,13 @@
 from django import forms
-from lms.models import Student
+from lms.models import Student, Book
 
 class CreateStudent(forms.ModelForm):
     class Meta:
         model = Student
-        fields = [
-            'student_name',
-            'student_address',
-            'student_phone'
-        ]
+        fields = '__all__'
+
+
+
 
 class django_CreateStudent(forms.Form):
     student_name    = forms.CharField()
