@@ -1,0 +1,57 @@
+{% extends 'lms/base.html' %}
+
+{% block title %}
+    Detail
+{% endblock  %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="md-col-6 m-auto">
+                <h1>Student List</h1>
+            </div>
+                
+
+            </div>
+    </div>
+    
+    <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Books Borrowed</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            
+                            {% for student in student_list %}
+                                <tr>
+                                    <th scope="row"> {{ student.id }}</ th>
+                                    <td> {{ student.student_name }} </td>
+                                    <td> {{ student.student_address }} </td>
+                                    <td> {{ student.student_phone }} </td>
+                                    <td>
+                                        {% for book in student.book_set.all %}
+                                            {{book.book_name}} <br>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'description' student.id %}"> <u>Details</u> </a>
+                                    </td>
+                                </tr>
+                                
+                            {% endfor %}
+                            
+                        
+
+                </table>
+
+
+{% endblock content %}
+

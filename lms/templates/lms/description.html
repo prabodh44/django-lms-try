@@ -1,0 +1,29 @@
+{% extends 'lms/base.html' %}
+
+{% block title %}
+    Description
+{% endblock title %}
+
+{% block content %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto">
+                <div class="card border-secondary mb-3" style="max-width: 18rem; margin-top: 5px;">
+                    <div class="card-header">{{ student.student_name }}</div>
+                    <div class="card-body text-secondary">
+                        <h5 class="card-title">Books Borrowed</h5>
+                        <p class="card-text">
+                            <ul>
+                                {% for book in student.book_set.all %}
+                                <li class="lead"> {{ book.book_name }} </li>
+                                <h6> {{ book.book_summary }} </h6>
+                            {% endfor %}
+                            </ul>
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}
