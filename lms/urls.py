@@ -23,9 +23,12 @@ from . import views
 
 urlpatterns = [
     path('', views.index_view, name='index'),
-    path('/detail/', views.detail_view, name='detail'),
-    path('/addstudent/', views.addStudent_view, name='addstudent'),    
-    path('/addnewbook/', views.addNewBook_view, name='addnewbook'),    
-    path('/description/<int:student_id>', views.description_view, name='description'),
+    path('detail/', views.detail_view, name='detail'),
+    path('addstudent/', views.addStudent_view, name='addstudent'),    
+    path('addnewbook/', views.addNewBook_view, name='addnewbook'),    
+    path('description/<int:student_id>', views.description_view, name='description'),
+    path('form/', views.form_view, name='form'),
+    path('edit/', views.edit_form, name='edit_form'),
+    path('std/', views.student_view, name='student'),
+    path('delete/<int:student_id>', views.delete_view, name='delete'),
 ]
-

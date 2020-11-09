@@ -19,6 +19,6 @@ from django.urls import include, path
 
 urlpatterns = [
     # path('modelstry', include('modelstry.urls')),
-    path('lms', include('lms.urls')),
+    path('lms/', include('lms.urls')),
     path('admin/', admin.site.urls),
 ]

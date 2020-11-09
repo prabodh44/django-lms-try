@@ -15,7 +15,7 @@ def index_view(request):
 def detail_view(request):
     student_list = Student.objects.all()
     return render(request, 'lms/detail.html', {
-        'student_list' : student_list,
+        'student_list' : student_list
     })
 
 def addStudent_view(request):
@@ -28,7 +28,7 @@ def addStudent_view(request):
         # form.is_valid() returns false ASK Alina
         print("FORM Valid", form.is_valid())
         form = CreateStudent(request.POST) 
-        # form.save()
+        form.save()
 
         
     return render(request, 'lms/addstudent.html', {'form':form})
@@ -46,10 +46,32 @@ def description_view(request, student_id):
     student = Student.objects.get(pk=student_id)
     return render(request, 'lms/description.html', {
         'student' : student,
-        'student_id' : student_id,
+        'student_id' : student_id
     })
     
+    
+def form_view(request):
+    
+    return render(request, 'lms/form.html', {}) 
 
+
+def edit_form(request):
+    # name = request.POST["name"]
+    # Student.objects.create(student_name=name)   
+    return render(request, 'lms/index.html', {'std': 'prabodh'})
+
+
+def student_view(request):
+    student_list = Student.objects.all()
+    return render(request, 'lms/student.html', {'student_list':student_list})
+
+def delete_view(request, student_id):
+    print ("student_id ", student_id)
+    try:
+        student = Student.objects.get(pk=student_id)
+    except Student.DoesNotExist:
+        return redirect('index')
     
-    
-    
+    print(student.student_name, "will be deleted ")
+    student.delete()
+    return redirect('index')
