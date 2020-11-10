@@ -24,6 +24,7 @@
                             <th scope="col">Address</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Delete</th>
+                            <th scope="col">Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +37,10 @@
                                     <td> {{ student.student_address }} </td>
                                     <td> {{ student.student_phone }} </td>
                                     <td> 
-                                        <a href="{% url  'delete'  student.id %}">Delete</a>
+                                        <a href="{% url 'delete' student.id  %}">Delete</a>
+                                    </td>
+                                    <td> 
+                                        <a href="{% url 'edit' student.id  %}">Edit</a>
                                     </td>
                                 </tr>
                                 

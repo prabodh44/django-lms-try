@@ -28,7 +28,7 @@ urlpatterns = [
     path('addnewbook/', views.addNewBook_view, name='addnewbook'),    
     path('description/<int:student_id>', views.description_view, name='description'),
     path('form/', views.form_view, name='form'),
-    path('edit/', views.edit_form, name='edit_form'),
     path('std/', views.student_view, name='student'),
-    path('delete/<int:student_id>', views.delete_view, name='delete'),
+    path('edit/<int:student_id>', views.edit_view, name='edit'),
+    path('delete/<int:student_id>', views.delete_student, name='delete'),
 ]

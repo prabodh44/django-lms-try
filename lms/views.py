@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from lms.models import Student, Book
 from lms.forms import CreateStudent, CreateBook
@@ -55,23 +55,37 @@ def form_view(request):
     return render(request, 'lms/form.html', {}) 
 
 
-def edit_form(request):
-    # name = request.POST["name"]
-    # Student.objects.create(student_name=name)   
-    return render(request, 'lms/index.html', {'std': 'prabodh'})
+def edit_view(request, student_id):
+        
+    student = Student.objects.get(pk=student_id) 
+  
+    if (request.method == "POST"):
+        student.student_name    = request.POST.get('std_name')
+        student.student_address = request.POST.get('std_address')
+        student.student_phone    = request.POST.get('std_phone')
+        student.save()
+        return redirect('student')
+    return render(request, 'lms/edit_form.html', {'student': student})
 
 
 def student_view(request):
     student_list = Student.objects.all()
     return render(request, 'lms/student.html', {'student_list':student_list})
 
-def delete_view(request, student_id):
-    print ("student_id ", student_id)
+def delete_student(request, student_id):
+    print ("Student ID" , student_id)
     try:
         student = Student.objects.get(pk=student_id)
-    except Student.DoesNotExist:
-        return redirect('index')
     
-    print(student.student_name, "will be deleted ")
+    except student.DoesNotExist:
+        # raise ('this is an exception')
+        return redirect('index')
     student.delete()
-    return redirect('index')
+    return redirect('student')
+    
+    
+    
+    
+
+ 
+    
