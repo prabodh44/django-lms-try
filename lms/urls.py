@@ -29,6 +29,6 @@ urlpatterns = [
     path('description/<int:student_id>', views.description_view, name='description'),
     path('form/', views.form_view, name='form'),
     path('std/', views.student_view, name='student'),
-    path('edit/<int:student_id>', views.edit_view, name='edit'),
     path('delete/<int:student_id>', views.delete_student, name='delete'),
+    path('update/<int:student_id>', views.update_student, name='update'),
 ]

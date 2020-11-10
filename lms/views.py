@@ -55,17 +55,7 @@ def form_view(request):
     return render(request, 'lms/form.html', {}) 
 
 
-def edit_view(request, student_id):
-        
-    student = Student.objects.get(pk=student_id) 
-  
-    if (request.method == "POST"):
-        student.student_name    = request.POST.get('std_name')
-        student.student_address = request.POST.get('std_address')
-        student.student_phone    = request.POST.get('std_phone')
-        student.save()
-        return redirect('student')
-    return render(request, 'lms/edit_form.html', {'student': student})
+
 
 
 def student_view(request):
@@ -82,6 +72,17 @@ def delete_student(request, student_id):
         return redirect('index')
     student.delete()
     return redirect('student')
+
+def update_student(request, student_id):
+    student = Student.objects.get(pk=student_id)
+    if (request.method == "POST"):
+        student.student_name        = request.POST.get('std_name')
+        student.student_address    = request.POST.get('std_address')
+        student.student_phone    = request.POST.get('std_phone')
+        student.save()
+        return redirect('student')    
+    
+    return render(request, 'lms/edit_form.html', {"student":student})
     
     
     
